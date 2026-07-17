@@ -1,0 +1,50 @@
+﻿@using RequestSystem.Areas.Customer.ViewModels
+@model NewRequestViewModel
+
+<div class="container mb-5 mt-5">
+    <div style="width: 1260px; border: 2px solid #ccc; padding: 60px;
+                border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <h3 style="color: #19692c; margin: 0 0 10px 0;">
+            نوع التسجيل
+        </h3>
+        <hr>
+
+        <!-- form يبدأ هنا -->
+        <form asp-area="Customer" asp-controller="User" asp-action="SelectRequestType" method="post">
+            <div class="mb-5">
+                <label style="display: block; margin-bottom: 10px;">
+                    نوع التسجيل<span style="color: red;">*</span>
+                </label>
+
+                <div>
+                    <input type="radio" asp-for="RequestType" value="فرد" id="Individual" />
+                    <label for="Individual">فرد</label>
+                </div>
+
+                <div>
+                    <input type="radio" asp-for="RequestType" value="شركة" id="company" />
+                    <label for="company">شركة</label>
+                </div>
+
+                <!-- Validation -->
+                <span asp-validation-for="RequestType" class="text-danger"></span>
+            </div>
+
+            <!-- زر الإرسال داخل form -->
+            <button type="submit" class="btn"
+                    style="height: 40px;
+                           background-color: white;
+                           color: #19692c;
+                           border: 2px solid #19692c;
+                           font-weight: bold;
+                           margin-top: 10px;">
+                التالي
+            </button>
+        </form>
+        <!-- form يغلق هنا -->
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

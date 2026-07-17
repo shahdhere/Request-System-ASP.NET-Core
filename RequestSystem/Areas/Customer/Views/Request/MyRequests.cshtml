@@ -1,0 +1,82 @@
+﻿@using Models.Models
+@model IEnumerable<Request>
+@{
+    var requestType = Context.Session.GetString("RequestType");
+}
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div style="width: 1260px; border: 2px solid #19692c; padding: 20px;
+         border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); background-color: white;">
+    
+    <div style="background-color: white; padding: 15px; border-top-left-radius: 10px; border-top-right-radius: 10px;
+         display: flex; align-items: center; justify-content: flex-start; ">
+        <i class="bi bi-list-ul" style="color: #19692c; font-size: 30px;"></i>
+        <h3 style="color: #19692c; margin: 0; margin-right: 10px;">
+            طلباتي 
+        </h3>
+    </div>
+       
+        <a asp-action="CreateRequest" class="btn btn-primary mb-3" style="background-color: #19692c; color: white; border: 2px solid #19692c;">
+            طلب جديد
+        </a>
+
+    @functions {
+        public string GetStatusColor(string status)
+        {
+            return status switch
+            {
+                "جديد" => "#cfe2ff",
+                "قيد المراجعة" => "#fff3cd",
+                "مكتمل" => "#d1e7dd",
+                "مرفوض" => "#f8d7da",
+                _ => "white"
+            };
+        }
+    }
+
+    <table class="table table-bordered">
+            <thead style="background-color: #19692c; color: white;">
+                <tr>
+                <th>رقم الطلب</th>
+                <th>نوع الطلب</th>
+                <th>تاريخ الإنشاء</th>
+                <th>حالة الطلب</th>
+                <th>الإجراء</th>
+                <th>تفاصيل الطلب</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="6" class="text-center text-muted">لا توجد طلبات حالياً.</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var r in Model)
+                {
+                    <tr style="background-color:@GetStatusColor(r.Status)">
+                            <td>@r.RequestNo</td>
+                            <td>@r.RequestType</td>
+                        <td>@r.CreatedAt.ToString("yyyy-MM-dd")</td>
+                        <td>@r.Status</td>
+                        <td>@r.ActionRequired</td>
+                        <td>
+                            <a asp-action="RequestDetails"
+                               asp-route-id="@r.Id"
+                                   class="btn btn-info btn-sm" style="background-color: #19692c; color: white; border: 2px solid #19692c;">
+                                    تفاصيل
+                                </a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,69 @@
+﻿@using RequestSystem.Areas.Customer.ViewModels
+@model OtpInputViewModel
+<div class="container mt-5 d-flex justify-content-center">
+    <div style="width: 1260px; border: 2px solid #ccc; padding: 20px;
+                border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+
+    <div style="background-color: #19692c; padding: 15px; border-top-left-radius: 10px; border-top-right-radius: 10px;
+         display: flex; align-items: center; justify-content: flex-start; ">
+
+        <i class="bi bi-person-check-fill" style="color: white; font-size: 30px;"></i>
+        <h3 style="color: white; margin: 0; margin-right: 10px;">
+            تسجيل الدخول
+        </h3>
+    </div>
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div style="background:#fdecec; border:1px solid #ff8a8a; color:#e40000;
+                    padding:20px; border-radius:8px; font-size:20px;
+                    display:flex; justify-content:space-between; align-items:center;">
+
+                <span>@TempData["ErrorMessage"]</span>
+
+                <span style="font-size:25px; cursor:pointer;"
+                      onclick="this.parentElement.style.display='none'">❌</span>
+            </div>
+        }
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+
+        <form asp-action="VerifyOtp" method="post">
+        <div class="mb-3">
+                <label style="margin-bottom: 8px;">البريد الإلكتروني</label>
+            <input asp-for="Email" class="form-control" readonly />
+        </div>
+
+        <div class="mb-3">
+                <label style="margin-bottom: 8px;">رمز التحقق<span style="color:red">*</span></label>
+            <input asp-for="Code" class="form-control" />
+            <span asp-validation-for="Code" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn"
+                style="width: 100%; height: 50px; margin-top: 10px;
+               background-color: white;
+               color: #19692c;
+               border: 2px solid #19692c;
+               font-weight: bold;">
+            تسجيل الدخول
+        </button>
+    </form>
+        <form asp-action="ResendOtp" method="post" style="margin-top:10px;">
+            <input type="hidden" name="Email" value="@Model.Email" />
+            <button type="submit" class="btn btn-secondary"
+                style=" background-color: white;
+                color: #19692c;
+                border: 2px solid #19692c;">
+                إعادة الإرسال
+            </button>
+        </form>
+</div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

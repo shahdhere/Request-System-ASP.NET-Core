@@ -1,0 +1,250 @@
+﻿@model RequestSystem.Areas.Customer.ViewModels.NewRequestViewModel
+@using Microsoft.AspNetCore.Http
+@using RequestSystem.Areas.Customer.ViewModels
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div style="width: 1260px; border: 2px solid #ccc; padding: 20px;
+                border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+
+        <form asp-action="CreateRequest" asp-controller="Request" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="RequestType" />
+            <!-- =================== البروفايل =================== -->
+            @if (Model.ShowProfile)
+            {
+                @if (Model.RequestType == "فرد")
+                {
+                    <div class="profile-box mb-4">
+                        <div style="background-color: #19692c; padding: 15px; border-top-left-radius: 10px; border-top-right-radius: 10px;
+                  display: flex; align-items: center; justify-content: flex-start;">
+                            <i class="bi bi-person-check-fill" style="color: white; font-size: 30px;"></i>
+                            <h3 style="color: white; margin: 0; margin-right: 10px;">تسجيل البيانات</h3>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>الاسم <span style="color:red">*</span></label>
+                            <input asp-for="IndividualProfile.Name" class="form-control" required />
+                            <span asp-validation-for="IndividualProfile.Name" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <label>رقم الجوال <span style="color:red">*</span></label>
+                            <input asp-for="IndividualProfile.PhoneNumber" class="form-control" required />
+                            <span asp-validation-for="IndividualProfile.PhoneNumber" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <label>البريد الالكتروني <span style="color:red">*</span></label>
+                            <input asp-for="IndividualProfile.Email" class="form-control" required />
+                            <span asp-validation-for="IndividualProfile.Email" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <label>المدينة <span style="color:red">*</span></label>
+                            <input asp-for="IndividualProfile.City" class="form-control" required />
+                            <span asp-validation-for="IndividualProfile.City" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <label>المستوى التعليمي <span style="color:red">*</span></label>
+                            <input asp-for="IndividualProfile.EducationLevel" class="form-control" required />
+                            <span asp-validation-for="IndividualProfile.EducationLevel" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <label>التخصص</label>
+                            <input asp-for="IndividualProfile.Specialization" class="form-control" />
+                            <span asp-validation-for="IndividualProfile.Specialization" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <label>الجهة التي يعمل بها</label>
+                            <input asp-for="IndividualProfile.Organization" class="form-control" />
+                            <span asp-validation-for="IndividualProfile.Organization" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <label>المسمى الوظيفي</label>
+                            <input asp-for="IndividualProfile.JobTitle" class="form-control" />
+                            <span asp-validation-for="IndividualProfile.JobTitle" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                }
+                else if (Model.RequestType == "شركة")
+                {
+                    <div class="profile-box mb-4">
+                        <div style="background-color: #19692c; padding: 15px; border-top-left-radius: 10px; border-top-right-radius: 10px;
+                      display: flex; align-items: center; justify-content: flex-start;">
+                            <i class="bi bi-person-check-fill" style="color: white; font-size: 30px;"></i>
+                            <h3 style="color: white; margin: 0; margin-right: 10px;">تسجيل البيانات</h3>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>اسم الشركة <span style="color:red">*</span></label>
+                            <input asp-for="CompanyProfile.CompanyName" class="form-control" required />
+                            <span asp-validation-for="CompanyProfile.CompanyName" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <label>البريد الالكتروني <span style="color:red">*</span></label>
+                            <input asp-for="CompanyProfile.CompanyEmail" class="form-control" required />
+                            <span asp-validation-for="CompanyProfile.CompanyEmail" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <label>نوع الشركة <span style="color:red">*</span></label>
+                            <input asp-for="CompanyProfile.CompanyType" class="form-control" required />
+                            <span asp-validation-for="CompanyProfile.CompanyType" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-4">
+                            <label>هل يوجد لديكم منشأة ؟  <span style="color:red">*</span></label><br />
+                            <input type="radio" asp-for="CompanyProfile.HasFacility" value="true" /> نعم
+                            <input type="radio" asp-for="CompanyProfile.HasFacility" value="false" /> لا
+                            <span asp-validation-for="CompanyProfile.HasFacility" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <label>عنوان URL الشركة</label>
+                            <input asp-for="CompanyProfile.CompanyURL" class="form-control" required />
+                            <span asp-validation-for="CompanyProfile.CompanyURL" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-4">
+                            <label>الشركة موجودة في المملكة العربية السعودية؟  <span style="color:red">*</span></label><br />
+                            <input type="radio" asp-for="CompanyProfile.IsInSaudi" value="true" /> نعم
+                            <input type="radio" asp-for="CompanyProfile.IsInSaudi" value="false" /> لا
+                            <span asp-validation-for="CompanyProfile.IsInSaudi" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label>وصف موجز عن الشركة</label>
+                            <input asp-for="CompanyProfile.CompanyDescription" class="form-control" />
+                            <span asp-validation-for="CompanyProfile.CompanyDescription" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="mb-4">
+                            <label>رأس مال الشركة<span style="color:red">*</span></label>
+                            <select asp-for="CompanyProfile.CompanyCapital" asp-items="Model.CompanyProfile.CompanyCapitalList" class="form-control">
+                                <option value="">اختر</option>
+                            </select>
+                            <span asp-validation-for="CompanyProfile.CompanyCapital" class="text-danger"></span>
+                        </div>
+
+
+
+                        <div class="mb-3">
+                            <label>رقم التواصل</label>
+                            <input asp-for="CompanyProfile.CompanyPhone" class="form-control" />
+                            <span asp-validation-for="CompanyProfile.CompanyPhone" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                }
+            }
+
+            <!-- معلومات الابتكار  -->
+            <div class="innovation-box mb-4">
+                <div style="background-color: #19692c; padding: 15px; border-top-left-radius: 10px; border-top-right-radius: 10px;
+      display: flex; align-items: center; justify-content: flex-start;">
+                    <h3 style="color: white; margin: 0; margin-right: 10px;">معلومات عن الابتكار المقترح</h3>
+                </div>
+
+                <div class="mb-4">
+                    <label>هل تم تطبيق الحل مسبقا؟ <span style="color:red">*</span></label><br />
+                    <input type="radio" asp-for="SolutionAlreadyImplemented" value="true" /> نعم
+                    <input type="radio" asp-for="SolutionAlreadyImplemented" value="false" /> لا
+                    <span asp-validation-for="SolutionAlreadyImplemented" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label>الدولة<span style="color:red">*</span></label>
+                    <select asp-for="Country" asp-items="Model.Countries" class="form-control">
+                        <option value="">اختر الدولة</option>
+                    </select>
+                    <span asp-validation-for="Country" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label>وصف مختصر عن الابتكار المقدم<span style="color:red">*</span></label>
+                    <textarea asp-for="InnovationDescription" class="form-control"></textarea>
+                    <span asp-validation-for="InnovationDescription" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label>كيف يخدم هذا الابتكار الخدمات الصحية؟ <span style="color:red">*</span></label>
+                    <textarea asp-for="HowItServesHealthcare" class="form-control"></textarea>
+                    <span asp-validation-for="HowItServesHealthcare" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label>الغرض من تقديم الحل للتجربة <span style="color:red">*</span></label>
+                    <select asp-for="SelectedOption" asp-items="Model.MyNewOptions" class="form-control">
+                        <option value="">اختر</option>
+                    </select>
+                    <span asp-validation-for="SelectedOption" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label>درجة نضج الحل<span style="color:red">*</span></label>
+                    <select asp-for="SolutionMaturity" asp-items="Model.SolutionMaturities" class="form-control">
+                        <option value="">اختر درجة النضج</option>
+                    </select>
+                    <span asp-validation-for="SolutionMaturity" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label>صف لماذا يعد هذا الحل فريد من نوعه<span style="color:red">*</span></label>
+                    <textarea asp-for="WhyUnique" class="form-control"></textarea>
+                    <span asp-validation-for="WhyUnique" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label>اذكر الاحتياجات الأساسية لتجربة الحل المبتكر<span style="color:red">*</span></label>
+                    <textarea asp-for="NeededResources" class="form-control"></textarea>
+                    <span asp-validation-for="NeededResources" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label>التقنية التي ينتمي لها الحل<span style="color:red">*</span></label>
+                    <select asp-for="TechnologyCategory" asp-items="Model.TechnologyCategories" class="form-control">
+                        <option value="">اختر التقنية</option>
+                    </select>
+                    <span asp-validation-for="TechnologyCategory" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label>الفئة المستهدفة للحل المقترح<span style="color:red">*</span></label>
+                    <textarea asp-for="TargetAudience" class="form-control"></textarea>
+                    <span asp-validation-for="TargetAudience" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label>حجم السوق المستهدف<span style="color:red">*</span></label>
+                    <textarea asp-for="MarketSize" class="form-control"></textarea>
+                    <span asp-validation-for="MarketSize" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label>وصف مهارات وخبرات الفريق<span style="color:red">*</span></label>
+                    <textarea asp-for="TeamSkills" class="form-control"></textarea>
+                    <span asp-validation-for="TeamSkills" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label>اختر ملف (PDF، أقصى حجم: 5 ميغابايت) (اختياري)</label>
+                    <input type="file" asp-for="Attachment" accept=".pdf" class="form-control" />
+                </div>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="submit" class="btn btn-success">حفظ</button>
+                </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

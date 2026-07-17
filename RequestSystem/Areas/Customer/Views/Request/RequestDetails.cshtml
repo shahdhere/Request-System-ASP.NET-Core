@@ -1,0 +1,96 @@
+﻿@using RequestSystem.Areas.Customer.ViewModels
+@model RequestDetailsViewModel
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div style="width: 800px; border: 2px solid #19692c; border-radius: 10px; padding: 20px; background-color: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+
+        <h3 style="color: #19692c; margin-bottom: 20px; text-align: center;">تفاصيل الطلب</h3>
+
+        <div class="mb-3" style="text-align: right;">
+            <a asp-action="MyRequests"
+               class="btn"
+               style="background-color: #19692c; color: white; border: 2px solid #19692c;">
+                رجوع
+            </a>
+        </div>
+
+        <table class="table" style="border-collapse: collapse; width: 100%; border: 1px solid #19692c;">
+            <tbody>
+                <tr>
+                    <th style="width: 30%; border-bottom: 1px solid #19692c; background-color: #e9f5ec; color: #19692c;">رقم الطلب</th>
+                    <td style="border-bottom: 1px solid #19692c;">@Model.RequestNo</td>
+                </tr>
+                <tr>
+                    <th style="width: 30%; border-bottom: 1px solid #19692c; background-color: #e9f5ec; color: #19692c;">نوع الطلب</th>
+                    <td style="border-bottom: 1px solid #19692c;">@Model.RequestType</td>
+                </tr>
+
+                <tr>
+                    <th style="border-bottom: 1px solid #19692c; background-color: #e9f5ec; color: #19692c;">الدولة</th>
+                    <td style="border-bottom: 1px solid #19692c;">@Model.Country</td>
+                </tr>
+
+                <tr>
+                    <th style="border-bottom: 1px solid #19692c; background-color: #e9f5ec; color: #19692c;">الوصف المختصر</th>
+                    <td style="border-bottom: 1px solid #19692c;">@Model.ShortDescription</td>
+                </tr>
+                <tr>
+                    <th style="border-bottom: 1px solid #19692c; background-color: #e9f5ec; color: #19692c;">تأثيره على الصحة</th>
+                    <td style="border-bottom: 1px solid #19692c;">@Model.HealthImpactDescription</td>
+                </tr>
+                <tr>
+                    <th style="border-bottom: 1px solid #19692c; background-color: #e9f5ec; color: #19692c;">درجة نضج الحل</th>
+                    <td style="border-bottom: 1px solid #19692c;">@Model.SolutionMaturity</td>
+                </tr>
+                <tr>
+                    <th style="border-bottom: 1px solid #19692c; background-color: #e9f5ec; color: #19692c;">الفئة التقنية</th>
+                    <td style="border-bottom: 1px solid #19692c;">@Model.TechnologyCategory</td>
+                </tr>
+                <tr>
+                    <th style="border-bottom: 1px solid #19692c; background-color: #e9f5ec; color: #19692c;">حجم السوق</th>
+                    <td style="border-bottom: 1px solid #19692c;">@Model.MarketSize</td>
+                </tr>
+                <tr>
+                    <th style="border-bottom: 1px solid #19692c; background-color: #e9f5ec; color: #19692c;">الفئة المستهدفة</th>
+                    <td style="border-bottom: 1px solid #19692c;">@Model.TargetAudience</td>
+                </tr>
+                <tr>
+                    <th style="border-bottom: 1px solid #19692c; background-color: #e9f5ec; color: #19692c;">الوصف المختصر</th>
+                    <td style="border-bottom: 1px solid #19692c;">@Model.ShortDescription</td>
+                </tr>
+
+                <tr>
+                    <th style="border-bottom: 1px solid #19692c; background-color: #e9f5ec; color: #19692c;">حالة الطلب</th>
+                    <td style="border-bottom: 1px solid #19692c;">@Model.Status</td>
+                </tr>
+
+                <tr>
+                    <th style="border-bottom: 1px solid #19692c; background-color: #e9f5ec; color: #19692c;">الإجراء المطلوب</th>
+                    <td style="border-bottom: 1px solid #19692c;">@Model.ActionRequired</td>
+                </tr>
+
+                <tr>
+                    <th style="border-bottom: 1px solid #19692c; background-color: #e9f5ec; color: #19692c;">تاريخ الإنشاء</th>
+                    <td style="border-bottom: 1px solid #19692c;">@Model.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                </tr>
+
+                <tr>
+                    <th style="background-color: #e9f5ec; color: #19692c;">مرفق</th>
+                    <td>
+                    
+                        @if (Model.AttachmentId.HasValue)
+                        {
+                            <a asp-action="DownloadAttachment" asp-route-id="@Model.AttachmentId.Value"  class="btn btn-primary">
+                                عرض الملف
+                            </a>
+                        }
+                        else
+                        {
+                            <span class="text-muted">لا يوجد</span>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
