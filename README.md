@@ -45,7 +45,38 @@ securely authenticate using email OTP verification, upload supporting documents,
 - Server-side validation
 - Form validation
 - Secure request handling
-- 
+
+##  Screenshots
+
+### Welcome Page
+The main landing page of the system.
+
+![Welcome Page](Screenshots/WelcomePage.png)
+
+### Email Login
+Users enter their email to receive a verification code.
+
+![Login](Screenshots/Login.png)
+
+### OTP Verification
+Users verify their identity using the received verification code.
+
+![OTP Verification](Screenshots/ANewVerificationCodeHasBeenSentToYourEmail.png)
+
+### Individual or Company Registration
+Users can choose between Individual and Company registration.
+
+![Individual or Company](Screenshots/IndividualOrCompany.png)
+
+### Create Request
+Users can submit a new innovation request.
+
+![Create Request](Screenshots/CreateRequest.png)
+
+### My Requests
+Users can view and track their submitted requests.
+
+![My Requests](Screenshots/MyRequest.png)
 ## Built With
 
 - ASP.NET Core MVC (.NET 8)
