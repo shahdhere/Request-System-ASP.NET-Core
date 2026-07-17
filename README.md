@@ -51,7 +51,7 @@ securely authenticate using email OTP verification, upload supporting documents,
 ### Welcome Page
 The main landing page of the system.
 
-![Welcome Page](Screenshots/WelcomePage.png)
+![Welcome Page](RequestSystem/Screenshots/WelcomePage.png)
 
 ### Email Login
 Users enter their email to receive a verification code.
