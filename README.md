@@ -56,27 +56,27 @@ The main landing page of the system.
 ### Email Login
 Users enter their email to receive a verification code.
 
-![Login](Screenshots/Login.png)
+![Email Login](RequestSystem/Screenshots/Login.png)
 
 ### OTP Verification
 Users verify their identity using the received verification code.
 
-![OTP Verification](Screenshots/ANewVerificationCodeHasBeenSentToYourEmail.png)
+![OTP Verification](RequestSystem/Screenshots/ANewVerificationCodeHasBeenSentToYourEmail.png)
 
 ### Individual or Company Registration
 Users can choose between Individual and Company registration.
 
-![Individual or Company](Screenshots/IndividualOrCompany.png)
+![Individual or Company](RequestSystem/Screenshots/IndividualOrCompany.png)
 
 ### Create Request
 Users can submit a new innovation request.
 
-![Create Request](Screenshots/CreateRequest.png)
+![Create Request](RequestSystem/Screenshots/CreateRequest.png)
 
 ### My Requests
 Users can view and track their submitted requests.
 
-![My Requests](Screenshots/MyRequest.png)
+![My Requests](RequestSystem/Screenshots/MyRequest.png)
 ## Built With
 
 - ASP.NET Core MVC (.NET 8)
